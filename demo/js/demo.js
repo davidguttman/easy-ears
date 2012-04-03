@@ -1,6 +1,6 @@
 (function() {
 
-  var codeExample, ears, hideHint, onSongLoad, draw, canvas, ctx;
+  var codeExample, ears, hideHint, onSongLoad, unwrapJS, draw, canvas, ctx;
   
   canvas = document.getElementById('demo');
   ctx = canvas.getContext('2d');
@@ -38,11 +38,22 @@
     dragTarget.style.display = 'none';
   };
 
+  unwrapJS = function(js) {
+    var split = js.split("\n"),
+        unwrappedSplit = split.slice(1, split.length-1),
+        unwrapped = unwrappedSplit.join("\n");
+
+    return unwrapped;
+  };
+
   codeExample = document.getElementById('code_example');
-  codeExample.value = draw.toString();
+  codeExample.value = unwrapJS(draw.toString());
+  
+  console.log();
+
   codeExample.addEventListener('keyup', function(){
     try {
-      draw = eval("draw = " + codeExample.value);  
+      draw = eval("draw = function(){" + codeExample.value + "}");  
     } catch(err) {
       // less good...
     }

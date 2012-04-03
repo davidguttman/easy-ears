@@ -26,26 +26,12 @@
       </div>
 
       <div id="docs">
-        <div class="section">
-          <h2>Getting Started</h2>
-          <p>
-            First, grab the <a href="https://raw.github.com/davidguttman/easy-ears/master/lib/easy_ears-0.1.js" target="_blank">code</a>.
-          </p>
-          <p>Second, create an instance like so:</p>
-          <p>
-<pre>
-  var ears = new EasyEars({
-    dropTarget: document
-  }, function(){
-    console.log('song loaded!');
-    // animateStuf();
-  });
-</pre>
-          </p>
-        </div>
 
         <div class="section">
           <h2>A (Live) Example</h2>
+          <p>The code below lives in a draw loop. Each time through the loop we'll tell EasyEars to update the audio data using <code>ears.updateAudio(timeSmoothing)</code>, where timeSmoothing is a value between 0.0 and 1.0.</p>
+          <p>Then access the audio data with <code>ears.lows(), ears.mids(), ears.highs()</code>. Each will return a value between 0.0 and 1.0 representing that frequency range.</p>
+          <p>Try it below:</p>
           <p>
             <textarea id="code_example"></textarea>
           </p>
