@@ -1,0 +1,57 @@
+a {
+  color: #4eb6e1; }
+
+body {
+  background: #121212;
+  color: #d5d5d5;
+  background-image: url("../img/grey_noise.png");
+  font-family: "Helvetica Neue"; }
+
+#main {
+  width: 764px;
+  margin: 96px auto;
+  text-align: center;
+  box-shadow: 0px 0px 15px 5px #181818; }
+  #main #header {
+    background-color: #676767;
+    border-bottom: 1px solid #4f4f4f;
+    height: 280px;
+    position: relative; }
+    #main #header #demo {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0; }
+    #main #header #drag_here {
+      position: absolute;
+      width: 100%;
+      margin-top: 50%;
+      background-color: rgba(0, 0, 0, 0.3); }
+    #main #header #title {
+      position: absolute;
+      bottom: 0px;
+      width: 100%; }
+      #main #header #title h1 {
+        color: #fff;
+        font-size: 40px;
+        font-weight: 100;
+        text-shadow: #181818 2px 2px 3px; }
+  #main #docs {
+    background-color: #7a7a7a;
+    border-top: 1px solid #989898;
+    padding: 40px 0 10px;
+    color: #d2d1d1; }
+    #main #docs .section {
+      width: 678px;
+      margin: 0 auto 18px;
+      padding: 18px;
+      background-color: #555;
+      text-align: left;
+      border: 1px solid #2a2a2a;
+      box-shadow: 2px 2px 1px #585858; }
+      #main #docs .section h2 {
+        color: #b5dcdd;
+        font-size: 20px; }
+      #main #docs .section p {
+        color: "blue"; }
