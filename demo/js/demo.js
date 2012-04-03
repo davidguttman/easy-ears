@@ -41,8 +41,12 @@
   codeExample = document.getElementById('code_example');
   codeExample.value = draw.toString();
   codeExample.addEventListener('keyup', function(){
-    // console.log(codeExample.value);
-    draw = eval("draw = " + codeExample.value);
+    try {
+      draw = eval("draw = " + codeExample.value);  
+    } catch(err) {
+      // less good...
+    }
+    
   }, false)
 
   ears = new EasyEars({
