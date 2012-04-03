@@ -61,5 +61,6 @@ body {
       #main #docs .section textarea {
         margin-top: 9px;
         font-family: Menlo,Monaco,"Courier New",monospace;
-        width: 98%;
-        height: 200px; }
+        width: 640px;
+        height: 180px;
+        padding: 18px; }
