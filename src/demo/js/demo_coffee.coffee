@@ -1,7 +1,5 @@
-ears = new EasyEars dropTarget: document, ->
+onSongLoad = ->
   canvas = document.getElementById 'demo'
-  dragTarget = document.getElementById 'drag_here'
-  dragTarget.style.display = 'none'
   ctx = canvas.getContext '2d'
 
   draw = ->
@@ -21,3 +19,14 @@ ears = new EasyEars dropTarget: document, ->
     draw()
 
   animate()
+
+hideHint = ->
+  dragTarget = document.getElementById 'drag_here'
+  dragTarget.style.display = 'none'
+
+codeExample = document.getElementById 'code_example'
+codeExample.value = onSongLoad.toString()
+
+ears = new EasyEars dropTarget: document, ->
+  hideHint()
+  onSongLoad()

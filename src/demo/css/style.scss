@@ -13,7 +13,7 @@ body {
 
 #main {
   width: 764px;
-  margin: 96px auto;
+  margin: 46px auto;
   text-align: center;
   box-shadow: 0px 0px 15px 5px #181818;
 
@@ -78,6 +78,12 @@ body {
       }
       p {
         color: "blue";
+      }
+      textarea {
+        margin-top: 9px;
+        font-family: Menlo,Monaco,"Courier New",monospace;
+        width: 98%;
+        height: 200px;
       }
     }
 
