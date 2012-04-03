@@ -41,19 +41,18 @@
   unwrapJS = function(js) {
     var split = js.split("\n"),
         unwrappedSplit = split.slice(1, split.length-1),
-        unwrapped = unwrappedSplit.join("\n");
+        unwrappedSplitDespaced = unwrappedSplit.map(function(line){return line.replace(/^\s+/,'')}),
+        unwrapped = unwrappedSplitDespaced.join("\n");
 
     return unwrapped;
   };
 
   codeExample = document.getElementById('code_example');
   codeExample.value = unwrapJS(draw.toString());
-  
-  console.log();
 
   codeExample.addEventListener('keyup', function(){
     try {
-      draw = eval("draw = function(){" + codeExample.value + "}");  
+      eval("draw = function(){" + codeExample.value + "}");  
     } catch(err) {
       // less good...
     }
