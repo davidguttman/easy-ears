@@ -2,15 +2,35 @@
 
 EasyEars helps add sound reactivity to your app
 
-url - The string url or where your mp3 lives (note: 
-  this must be on the same server or you will get a
-  a cross-domain error)
+new EasyEars(options, completeCallback);
+
+Initialization Examples:
+
+  // Create a new ears instance that will use a DOM
+  // element as a target for drag and dropped .mp3
+  ears = new EasyEars({dropTarget: document}, function(){
+    console.log('song loaded!');
+  });
   
-callback (optional) - called when the song is loaded
+  // or...
 
-Examples
+  // Create one that will use an mp3 from a url
+  ears = new EasyEars({url: '/mp3/a_song.mp3'});
 
-  ears = new EasyEars '/mp3/a_song.mp3'
+Usage Examples:
+
+  var animate = function() {
+    webkitRequestAnimationFrame(animate);
+    
+    // call updateAudio periodically to get latest sound data
+    ears.updateAudio();
+
+    // use the following methods to get sound data,
+    // each will return a value between 0.0 and 1.0
+    ears.lows();
+    ears.mids();
+    ears.highs();
+  }
 
 ###
 
