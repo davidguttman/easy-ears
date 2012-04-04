@@ -50,12 +50,23 @@
   codeExample = document.getElementById('code_example');
   codeExample.value = unwrapJS(draw.toString());
 
-  codeExample.addEventListener('keyup', function(){
+  var useNewCode = function(mirror) {
+    console.log(mirror);
     try {
-      eval("draw = function(){" + codeExample.value + "}");  
+      eval("draw = function(){" + mirror.getValue() + "}");  
     } catch(err) {
       // less good...
     }
+  };
+
+  var mirror = CodeMirror.fromTextArea(codeExample, {
+    onChange: useNewCode,
+    theme: 'lesser-dark',
+    autofocus: true
+  });
+
+  codeExample.addEventListener('keyup', function(){
+    useNewCode();
     
   }, false)
 
