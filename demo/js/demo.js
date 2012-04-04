@@ -6,13 +6,12 @@
   ctx = canvas.getContext('2d');
 
   draw = function() {
-    var w = Math.floor(canvas.width / 3);
-    
     ears.updateAudio(0.5);
-    
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "rgb(80,80,80)";
-    
+
+    var w = Math.floor(canvas.width / 3);    
     ctx.fillRect(0 * w, canvas.height, w, -canvas.height * ears.lows());
     ctx.fillRect(1 * w, canvas.height, w, -canvas.height * ears.mids());
     ctx.fillRect(2 * w, canvas.height, w, -canvas.height * ears.highs());
@@ -53,7 +52,7 @@
   var useNewCode = function(mirror) {
     console.log(mirror);
     try {
-      eval("draw = function(){" + mirror.getValue() + "}");  
+      eval("draw = function(){" + mirror.getValue() + "\n}");  
     } catch(err) {
       // less good...
     }
@@ -64,11 +63,6 @@
     theme: 'lesser-dark',
     autofocus: true
   });
-
-  codeExample.addEventListener('keyup', function(){
-    useNewCode();
-    
-  }, false)
 
   ears = new EasyEars({
     dropTarget: document
