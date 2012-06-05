@@ -47,6 +47,8 @@ class EasyEars
     @relativeFreqs = []
     @relativeFreqGroups = []
 
+    @boosts = [1, 1.070921985815603, 1.2479338842975207, 1.3482142857142856, 1.411214953271028, 1.451923076923077, 1.4803921568627452, 1.5099999999999998, 1.556701030927835, 1.5894736842105264, 1.6063829787234043, 1.6236559139784945, 1.641304347826087, 1.6593406593406594, 1.696629213483146, 1.715909090909091, 1.7356321839080462, 1.7356321839080462, 1.755813953488372, 1.7764705882352942, 1.7976190476190477, 1.8414634146341464, 1.8641975308641976, 1.8875, 1.9113924050632911, 1.935897435897436, 2.0684931506849313, 2.253731343283582, 2.559322033898305, 3.431818181818182, 3.431818181818182, 3.431818181818182]
+
     @initAudio()
     if @url
       @loadAudioBufferFromUrl @url  
@@ -61,6 +63,7 @@ class EasyEars
     @analyser.getByteTimeDomainData @timeData
     
     if @isPlaying
+      @applyBoosts()
       @updateFreqGroups()
       @updateMaxMinFreqs()
       @updateRelativeFreqs()
@@ -79,7 +82,7 @@ class EasyEars
     @source = @audioContext.createBufferSource()
 
     @analyser = @audioContext.createAnalyser()
-    @analyser.fftSize = 256
+    @analyser.fftSize = 128
 
     @source.connect @analyser
     @analyser.connect @audioContext.destination
@@ -133,12 +136,21 @@ class EasyEars
     @isPlaying = true
     @onFinishLoad() if @onFinishLoad?
 
+  applyBoosts: ->
+    boosted = []
+    
+    for boost, i in @boosts
+      boostFreq = boost * @freqData[i]
+      boosted.push boostFreq
+
+    @boostedFreqs = boosted
+
   updateMaxMinFreqs: ->
-    curMax = max @freqData
+    curMax = max @boostedFreqs
     @freqMax ?= curMax
     @freqMax = curMax if curMax > @freqMax
 
-    curMin = min @freqData
+    curMin = min @boostedFreqs
     @freqMin ?= curMin
     @freqMin = curMin if curMin < @freqMin
 
@@ -155,7 +167,7 @@ class EasyEars
 
     @relativeFreqs = []
 
-    for amp in @freqData
+    for amp in @boostedFreqs
       @relativeFreqs.push (map amp, self.freqMin, self.freqMax, 0, 1)
 
     @relativeFreqGroups = []
@@ -164,7 +176,7 @@ class EasyEars
       @relativeFreqGroups.push (map amp, self.groupMin, self.groupMax, 0, 1)
 
   updateFreqGroups: ->
-    nFreqs = @freqData.length
+    nFreqs = @boostedFreqs.length
 
     nGroups = 4
   
@@ -172,7 +184,7 @@ class EasyEars
     for n in [1..nGroups]
       groups.push []
 
-    for amp, i in @freqData
+    for amp, i in @boostedFreqs
       iGroup = Math.floor ((i/nFreqs)*nGroups)
       groups[iGroup].push amp
 
