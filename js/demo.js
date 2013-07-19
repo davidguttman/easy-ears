@@ -6,10 +6,14 @@
   ctx = canvas.getContext('2d');
 
   draw = function() {
-    ears.updateAudio(0.5);
+    ears.updateAudio(0.9);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "rgb(80,80,80)";
+
+    var red   = Math.floor(ears.lows() * 255);
+    var green = Math.floor(ears.mids() * 255);
+    var blue  = Math.floor(ears.highs() * 255);
+    ctx.fillStyle = "rgb("+red+","+blue+","+green+")";
 
     var w = Math.floor(canvas.width / 3);    
     ctx.fillRect(0 * w, canvas.height, w, -canvas.height * ears.lows());

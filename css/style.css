@@ -33,7 +33,7 @@ body {
     #main #header #drag_here {
       position: absolute;
       width: 100%;
-      margin-top: 50%;
+      margin-top: 85px;
       background-color: rgba(0, 0, 0, 0.3); }
     #main #header #title {
       position: absolute;
