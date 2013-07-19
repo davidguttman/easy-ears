@@ -210,10 +210,10 @@ max = (array) ->
 min = (array) ->
   Math.min array...
 
-if module
+if typeof module isnt 'undefined'
   module.exports = EasyEars
 
-if window
+if typeof window isnt 'undefined'
   window.EasyEars = EasyEars
 
 EasyEars
