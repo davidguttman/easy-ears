@@ -6,7 +6,7 @@
   ctx = canvas.getContext('2d');
 
   draw = function() {
-    ears.updateAudio(0.9);
+    ears.updateAudio(0.5);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
